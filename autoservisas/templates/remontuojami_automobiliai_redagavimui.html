@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <h1>Remontuojami automobiliai</h1><br/>
+    <br/><br/>
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Gedimo registravimo laikas</th>
+                <th scope="col">Automobilis</th>
+                <th scope="col">Gedimo aprašymas</th>
+                <th scope="col">Remonto kaina</th>
+                <th scope="col">Statusas</th>
+            </tr>
+        </thead>
+        {% for automobilis in remontuojami_automobiliai %}
+        <tbody class="pointeris">
+            <tr onclick=window.location.href="{{ url_for('atnaujinti_irasa', id=automobilis.id) }}">
+                <th scope="row">{{ automobilis.remonto_registracijos_data }}</th>
+                <td>{{ automobilis.automobilis }}</td>
+                <td>{{ automobilis.gedimo_aprasymas }}</td>
+                <td>{{ automobilis.remonto_kaina }}</td>
+                <td>{{ automobilis.statusas }}</td>
+            </tr>
+            </tbody>
+        {% endfor %}
+    </table>
+</div>     
+
+
+{% endblock %}

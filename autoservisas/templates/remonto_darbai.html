@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="content-section"><form method="POST" action="{{ url_for('remonto_darbai') }}">{{ form.hidden_tag() }}
+    <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Užregistruokite automobilį remontui</legend>
+
+        <label for="auto" class="form-label">Pasirinkite automobilį:</label>
+        <select class="form-control form-select-lg mb-3" aria-label=".form-select-lg example" id="auto" name="pasirinkimas">
+            {% for automobilis in mano_automobiliai %}
+                <option value = "{{ automobilis.id }}">{{ automobilis.marke }} {{ automobilis.modelis }} @ {{ automobilis.valstybinis_nr }}</option>
+            {% endfor %}
+        </select>
+
+        <div class="form-group">
+            {{ form.gedimo_aprasymas.label(class="form-control-label") }}
+            {% if form.gedimo_aprasymas.errors %}
+                {{ form.gedimo_aprasymas(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.gedimo_aprasymas.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.gedimo_aprasymas(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+
+
+    </fieldset>
+    <div class="form-group">
+        {{ form.submit(class="btn btn-outline-dark btn-block") }}
+    </div>
+</form></div>
+{% endblock %}

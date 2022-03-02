@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="content-section"><form method="POST" action="{{ url_for('automobilio_registracija') }}">{{ form.hidden_tag() }}
+    <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Užregistruokite automobilį</legend>
+
+        <div class="row">
+            <div class="form-group col-lg-4">
+                {{ form.marke.label(class="form-control-label") }}
+                {% if form.marke.errors %}
+                    {{ form.marke(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.marke.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.marke(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+            <div class="form-group col-lg-4">
+                {{ form.modelis.label(class="form-control-label") }}
+                {% if form.modelis.errors %}
+                    {{ form.modelis(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.modelis.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.modelis(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        
+            <div class="form-group col-lg-4">
+                {{ form.pagaminimo_metai.label(class="form-control-label") }}
+                {% if form.pagaminimo_metai.errors %}
+                    {{ form.pagaminimo_metai(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.pagaminimo_metai.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.pagaminimo_metai(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-lg-4">
+                {{ form.variklis.label(class="form-control-label") }}
+                {% if form.variklis.errors %}
+                    {{ form.variklis(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.variklis.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.variklis(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+            <div class="form-group col-lg-4">
+                {{ form.valstybinis_nr.label(class="form-control-label") }}
+                {% if form.valstybinis_nr.errors %}
+                    {{ form.valstybinis_nr(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.valstybinis_nr.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.valstybinis_nr(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+            <div class="form-group col-lg-4">
+                {{ form.vin_kodas.label(class="form-control-label") }}
+                {% if form.vin_kodas.errors %}
+                    {{ form.vin_kodas(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.vin_kodas.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.vin_kodas(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        </div>
+
+    </fieldset>
+    <div class="form-group">
+        {{ form.submit(class="btn btn-outline-dark btn-block") }}
+    </div>
+</form></div>
+
+{% endblock %}

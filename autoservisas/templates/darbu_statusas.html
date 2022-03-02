@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container" style="padding:0">
+    <h1>Automobilis</h1><br/>
+    <table class="table table-hover" >
+        <thead class="thead-dark">
+            <th scope="col">Gedimo registravimo laikas</th>
+            <th scope="col">Automobilis</th>
+            <th scope="col">Gedimo aprašymas</th>
+            <th scope="col">Remonto kaina</th>
+            <th scope="col">Statusas</th>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">{{ duomenu_atnaujinimas.remonto_registracijos_data }}</th>
+                <td>{{ duomenu_atnaujinimas.automobilis }}</td>
+                <td>{{ duomenu_atnaujinimas.gedimo_aprasymas }}</td>
+                <td>{{ duomenu_atnaujinimas.remonto_kaina }}</td>
+                <td>{{ duomenu_atnaujinimas.statusas }}</td>
+            </tr>
+            </tbody>
+    </table>
+</div>    
+<br/>
+
+<div class="content-section"><form method="POST" action="#">{{ form.hidden_tag() }}
+    <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Atnaujinti remonto statusą ir kainą</legend>
+        <div class="row">
+            <div class="form-group col-lg-6">
+                {{ form.remonto_kaina.label(class="form-control-label") }}
+                {% if form.remonto_kaina.errors %}
+                    {{ form.remonto_kaina(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.remonto_kaina.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.remonto_kaina(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+            <div class="form-group col-lg-6">
+                {{ form.statusas.label(class="form-control-label") }}
+                {% if form.statusas.errors %}
+                    {{ form.statusas(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.statusas.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.statusas(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-lg-12">
+                {{ form.gedimo_aprasymas.label(class="form-control-label") }}
+                {% if form.gedimo_aprasymas.errors %}
+                    {{ form.gedimo_aprasymas(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.gedimo_aprasymas.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.gedimo_aprasymas(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        </div>
+    </fieldset>
+    <div class="form-group">
+        {{ form.submit(class="btn btn-outline-dark btn-block") }}
+    </div>
+</form></div>
+
+
+{% endblock %}
