@@ -56,7 +56,7 @@ class AtsarginesDetales(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     tiekejas = db.Column('Tiekėjas', db.String(50), nullable=False)
     detale = db.Column('Detalė', db.String(100), nullable=False)
-    kaina = db.Column('Detalės kaina', db.Integer, nullable=False)
+    detales_kaina = db.Column('Detalės kaina', db.Integer, nullable=False)
     kiekis = db.Column('Kiekis', db.Integer, nullable=False)
 
     automobilio_id = db.Column(db.Integer, db.ForeignKey('automobiliai.id'))

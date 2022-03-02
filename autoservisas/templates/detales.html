@@ -45,16 +45,16 @@
 
         <div class="row">
             <div class="form-group col-lg-6">
-                {{ form.kaina.label(class="form-control-label") }}
-                {% if form.kaina.errors %}
-                    {{ form.kaina(class="form-control form-control-lg is-invalid") }}
+                {{ form.detales_kaina.label(class="form-control-label") }}
+                {% if form.detales_kaina.errors %}
+                    {{ form.detales_kaina(class="form-control form-control-lg is-invalid") }}
                     <div class="invalid-feedback">
-                        {% for error in form.kaina.errors %}
+                        {% for error in form.detales_kaina.errors %}
                             <span>{{ error }}</span>
                         {% endfor %}
                     </div>
                 {% else %}
-                    {{ form.kaina(class="form-control form-control-lg") }}
+                    {{ form.detales_kaina(class="form-control form-control-lg") }}
                 {% endif %}
             </div>
         

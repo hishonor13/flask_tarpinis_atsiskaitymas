@@ -192,7 +192,7 @@ def detales():
         nauja_detale_remontui = AtsarginesDetales(
             tiekejas = form.tiekejas.data,
             detale = form.detale.data,
-            kaina = form.kaina.data,
+            detales_kaina = form.kaina.data,
             kiekis = form.kiekis.data,
             automobilio_id = request.form.get('pasirinkimas')
         )

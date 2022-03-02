@@ -80,6 +80,6 @@ class RemontoDarbuStatusas(FlaskForm):
 class AtsarginesDetalesForma(FlaskForm):
     tiekejas = SelectField('Tiekėjas', choices=["AD Baltic", "InterCars", "AutoAibė", "Tekstara", "Kita..."])
     detale = StringField('Detalė', [DataRequired()])
-    kaina = IntegerField('Detalės kaina', [DataRequired()])
+    detales_kaina = IntegerField('Detalės kaina', [DataRequired()])
     kiekis = IntegerField('Kiekis', [DataRequired()])
     submit = SubmitField('Patvirtinti')
