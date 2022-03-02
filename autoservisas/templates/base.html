@@ -28,6 +28,7 @@
 
                 {% if current_user and current_user.is_authenticated and current_user.is_staf %}
                     <li class="nav-item"><a class="nav-link" href="{{ url_for('remontuojami_automobiliai') }}">Remontuojami automobiliai</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('detales') }}">Detalių užsakymas</a></li>
                 {% endif %}
 
                 {% if current_user and current_user.is_authenticated and current_user.is_admin %}

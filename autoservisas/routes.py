@@ -2,7 +2,7 @@ from flask import redirect, request, render_template, flash, url_for
 from flask_bcrypt import Bcrypt
 from flask_login import logout_user, login_user, login_required, current_user
 
-from autoservisas.models import Vartotojas, Adminitratorius, Automobiliai, RemontoDarbai
+from autoservisas.models import Vartotojas, Adminitratorius, Automobiliai, RemontoDarbai, AtsarginesDetales
 from autoservisas import forms
 from autoservisas import app, db, admin
 
@@ -10,6 +10,7 @@ from autoservisas import app, db, admin
 admin.add_view(Adminitratorius(Vartotojas, db.session))
 admin.add_view(Adminitratorius(Automobiliai, db.session))
 admin.add_view(Adminitratorius(RemontoDarbai, db.session))
+admin.add_view(Adminitratorius(AtsarginesDetales, db.session))
 bcrypt = Bcrypt(app)
 
 
@@ -180,3 +181,23 @@ def profilis():
         form.vardas.data = current_user.vardas
         form.el_pastas.data = current_user.el_pastas
     return render_template('profilis.html', current_user=current_user, form=form)
+
+
+@app.route('/detales', methods=['GET', 'POST'])
+@login_required
+def detales():
+    form = forms.AtsarginesDetalesForma()
+    klientu_automobiliai = Automobiliai.query.all()
+    if form.validate_on_submit():
+        nauja_detale_remontui = AtsarginesDetales(
+            tiekejas = form.tiekejas.data,
+            detale = form.detale.data,
+            kaina = form.kaina.data,
+            kiekis = form.kiekis.data,
+            automobilio_id = request.form.get('pasirinkimas')
+        )
+        db.session.add(nauja_detale_remontui)
+        db.session.commit()
+        flash('Detalė užsakyta', 'success')
+        return redirect(url_for('detales'))
+    return render_template('detales.html', form=form, klientu_automobiliai=klientu_automobiliai, current_user=current_user)

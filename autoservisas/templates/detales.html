@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="content-section"><form method="POST" action="{{ url_for('detales') }}">{{ form.hidden_tag() }}
+    <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Detaliu užsakymas</legend>
+
+        <label for="auto" class="form-label">Pasirinkite automobilį:</label>
+        <select class="form-control form-select-lg mb-3" aria-label=".form-select-lg example" id="auto" name="pasirinkimas">
+            {% for automobilis in klientu_automobiliai %}
+                <option value = "{{ automobilis.id }}">{{ automobilis.marke }} {{ automobilis.modelis }} @ {{ automobilis.valstybinis_nr }}</option>
+            {% endfor %}
+        </select>
+
+        <div class="row">
+            <div class="form-group col-lg-6">
+                {{ form.tiekejas.label(class="form-control-label") }}
+                {% if form.tiekejas.errors %}
+                    {{ form.tiekejas(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.tiekejas.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.tiekejas(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+            <div class="form-group col-lg-6">
+                {{ form.detale.label(class="form-control-label") }}
+                {% if form.detale.errors %}
+                    {{ form.detale(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.detale.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.detale(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-lg-6">
+                {{ form.kaina.label(class="form-control-label") }}
+                {% if form.kaina.errors %}
+                    {{ form.kaina(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.kaina.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.kaina(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        
+            <div class="form-group col-lg-6">
+                {{ form.kiekis.label(class="form-control-label") }}
+                {% if form.kiekis.errors %}
+                    {{ form.kiekis(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.kiekis.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.kiekis(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        </div>
+
+    </fieldset>
+    <div class="form-group">
+        {{ form.submit(class="btn btn-outline-dark btn-block") }}
+    </div>
+</form></div>
+
+{% endblock %}

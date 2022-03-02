@@ -9,7 +9,6 @@ MESSAGE_BAD_EMAIL = 'Neteisingas el.pašto adresas.'
 
 
 class RegistracijosForma(FlaskForm):
-
     vardas = StringField('Vardas', [DataRequired()])
     el_pastas = StringField('El.paštas', [DataRequired(), Email(MESSAGE_BAD_EMAIL)])
     slaptazodis1 = PasswordField('Slaptažodis', [DataRequired()])
@@ -28,7 +27,6 @@ class RegistracijosForma(FlaskForm):
 
 
 class ProfilioForma(FlaskForm):
-
     vardas = StringField('Vardas', [DataRequired()])
     el_pastas = StringField('El.paštas', [DataRequired(), Email(MESSAGE_BAD_EMAIL)])
     submit = SubmitField('Atnaujinti')
@@ -78,3 +76,10 @@ class RemontoDarbuStatusas(FlaskForm):
     gedimo_aprasymas = TextAreaField('Gedimo aprašymas', [DataRequired()])
     submit = SubmitField('Patvirtinti')
 
+
+class AtsarginesDetalesForma(FlaskForm):
+    tiekejas = SelectField('Tiekėjas', choices=["AD Baltic", "InterCars", "AutoAibė", "Tekstara", "Kita..."])
+    detale = StringField('Detalė', [DataRequired()])
+    kaina = IntegerField('Detalės kaina', [DataRequired()])
+    kiekis = IntegerField('Kiekis', [DataRequired()])
+    submit = SubmitField('Patvirtinti')
